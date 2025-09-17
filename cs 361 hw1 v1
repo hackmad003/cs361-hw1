@@ -1,0 +1,45 @@
+
+//the fingerprint func will pass input and len as arguements to handle_error
+//handle_error leads to an abort
+void handle_error(char *input, int len){
+   printf("AA_Input was not valid.\n");
+   printf("%s\n", input);
+   exit(1);
+}
+
+
+int main(int argc, char ** argv)
+{
+   int len = strlen(argv[1]);
+   int hash;
+
+   if (argc != 2) {
+        fprintf(stderr, "Program needs at least one argument\n");
+        return 1;
+    }
+
+    //char * arg = argv[1];
+   //Call the function in lib.o that print out the help message
+    if (strcmp(argv[1], "help") == 0) {
+        help();
+        return 0;
+    }
+
+   //for any other arguement compute and print the fingerprint
+   //If computing the fingerprint fails then print the argument
+
+
+   //the function is_valid can be used to determine if the input is valid for RESTRICTED
+   //the value of MODE must be set to the address of the desired mode.
+    if(!is_valid(argv[1], len)){
+        MODE = (long)&RESTRICTED;
+        hash = fingerprint(argv[1], len);
+        printf("%d", hash);
+    } else {
+        MODE = (long)&ENHANCED;
+        hash = fingerprint(argv[1], len);
+        printf("%d", hash);
+}
+
+    return EXIT_SUCCESS;
+}
