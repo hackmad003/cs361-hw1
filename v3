@@ -1,0 +1,46 @@
+
+//the fingerprint func will pass input and len as arguements to handle_error
+//handle_error leads to an abort
+void handle_error(char *input, int len){
+   printf("Input was not valid._HE");
+   exit(1);
+}
+
+
+int main(int argc, char ** argv)
+{
+   int len = strlen(argv[1]);
+   int hash;
+
+   if (argc != 2) {
+        fprintf(stderr, "Program needs at least one argument");
+        return 1;
+    }
+
+    //char * arg = argv[1];
+   //Call the function in lib.o that print out the help message
+    if (strcmp(argv[1], "help") == 0) {
+        help();
+        return 0;
+    }
+
+        MODE = (long)&RESTRICTED;
+        INVALID = 0;
+
+        if(!is_valid(argv[1], len)){
+//              printf("Input was not valid._IV");
+                printf("%s", argv[1]);
+                return 0;
+        }
+
+        hash = fingerprint(argv[1], len);
+
+        if(INVALID != 0){
+//              printf("Input was not valid._INV");
+                printf("%s", argv[1]);
+        }
+
+        printf("%d", hash);
+
+    return EXIT_SUCCESS;
+}
